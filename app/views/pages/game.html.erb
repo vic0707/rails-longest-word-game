@@ -1,0 +1,18 @@
+<h1>Let's Play</h1>
+
+<ul>
+	<% @random_letters.each do |letter| %>
+	<li> <%= letter %> </li>
+	<% end %>
+</ul>
+
+<% start_time = Time.now %>
+
+<form action="/score" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for="question">Make your choice</label>
+  <input type="text" id="question" name="query" placeholder="Type the longest word">
+  <input type="hidden" name="start_time" value="<%= start_time %>">
+  <input type="hidden" name="random_letters" value="<%= @random_letters %>">
+  <input type="submit" value="Submit">
+</form>
